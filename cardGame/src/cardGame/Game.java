@@ -2,6 +2,7 @@ package cardGame;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.Random;
 
 public class Game {
@@ -53,6 +54,13 @@ public class Game {
 		}else {
 			return 3;
 		}
+	}
+	public int playerScore(ArrayList<Card> cards) {
+			int socre = 0;
+			for (int i = 0; i < cards.size(); i++) {
+				socre =+ cards.get(i).getScore();
+			}
+		return socre;
 	}
 	
 	@Override

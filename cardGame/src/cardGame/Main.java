@@ -15,18 +15,18 @@ public class Main {
 		System.out.println("==============================");
 		System.out.println();
 		System.out.println();
-		TimeUnit.SECONDS.sleep(2);
+		TimeUnit.SECONDS.sleep(1);
 		System.out.println("Player 1 joined the game!");
 		TimeUnit.SECONDS.sleep(1);
 		System.out.println("Player 2 joined the game!");
-		TimeUnit.SECONDS.sleep(2);
+		TimeUnit.SECONDS.sleep(1);
 		do {
 			System.out.println();
 			System.out.println();
 			System.out.println("==============================");
 			System.out.println("---- Round:"+ ++round+" started ---");
 			System.out.println("==============================");
-			TimeUnit.SECONDS.sleep(2);
+			TimeUnit.SECONDS.sleep(1);
 			System.out.println("Player 1 drop card");
 			table.add(player1.playCard());
 			System.out.println(table.get(0).toString());
@@ -34,14 +34,14 @@ public class Main {
 			System.out.println("Player 2 drop card");
 			table.add(player2.playCard());
 			System.out.println(table.get(1).toString());
-			TimeUnit.SECONDS.sleep(2);
+			TimeUnit.SECONDS.sleep(1);
 			System.out.println();
 			System.out.println("====== Checking For this Round Winner ======");
-			TimeUnit.SECONDS.sleep(1);
+//			TimeUnit.SECONDS.sleep(1);
 			System.out.print(".");
 //			TimeUnit.SECONDS.sleep(1);
 			System.out.print(".");
-			TimeUnit.SECONDS.sleep(1);
+//			TimeUnit.SECONDS.sleep(1);
 			System.out.print(".");
 //			TimeUnit.SECONDS.sleep(1);
 			System.out.print(".");
@@ -65,11 +65,11 @@ public class Main {
 		System.out.println("==============================");
 //		TimeUnit.SECONDS.sleep(1);
 		System.out.print(".");
-		TimeUnit.SECONDS.sleep(1);
+//		TimeUnit.SECONDS.sleep(1);
 		System.out.print(".");
 //		TimeUnit.SECONDS.sleep(1);
 		System.out.print(".");
-		TimeUnit.SECONDS.sleep(1);
+//		TimeUnit.SECONDS.sleep(1);
 		System.out.print(".");
 //		TimeUnit.SECONDS.sleep(1);
 		System.out.println(".");
@@ -80,14 +80,14 @@ public class Main {
 		System.out.println("\nPlayer one has "+player1.getEarnedCards().size()+" cards");
 		System.out.println("Player two has "+player2.getEarnedCards().size()+" cards");	
 		System.err.println("=======================");
-		if(player1.getEarnedCards().size() > player2.getEarnedCards().size()) {
-			System.err.println("\n==== The Winner is player 1 by: "+player1.getEarnedCards().size()+" crads");
-		}else if(player1.getEarnedCards().size() < player2.getEarnedCards().size()) {
-			System.err.println("\n==== The Winner is player 2 by: "+player2.getEarnedCards().size()+" cards");			
+		if(new Game().playerScore(player1.getEarnedCards()) > new Game().playerScore(player2.getEarnedCards())) {
+			System.err.println("\n==== The Winner is player 1 by: "+new Game().playerScore(player1.getEarnedCards())+" Score");
+		}else if(new Game().playerScore(player1.getEarnedCards()) < new Game().playerScore(player2.getEarnedCards())) {
+			System.err.println("\n		==== The Winner is player 2 by: "+new Game().playerScore(player2.getEarnedCards())+" Score");			
 		}else {
 			System.err.println("\n==== it's a tie!");
 		}
-		System.err.println("=======================");
+		System.err.println("\n=======================");
 		System.err.println("=======================");
 	}
 }
