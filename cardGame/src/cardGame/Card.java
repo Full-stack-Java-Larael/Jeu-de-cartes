@@ -3,7 +3,7 @@ package cardGame;
 import java.util.ArrayList;
 
 abstract class Card {
-	
+
 	
 	private String name = null;
 	private String type = null;

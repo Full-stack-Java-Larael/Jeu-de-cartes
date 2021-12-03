@@ -1,25 +1,93 @@
 package cardGame;
 
-import java.util.ArrayList;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 public class Main {
 	
-	public static void main(String[] args) {
-		Game game = new Game();
-		game.makeNewSet();
-		ArrayList<Card> cards = game.getCards();
-		//System.out.println(game);
-		System.out.println("Type : "+cards.get(0).getType()+", "+"Name : "+cards.get(0).getName()+", "+"Score : "+cards.get(0).getScore()+", "+"Life : "+cards.get(0).getLife()+", "+"Attack : "+cards.get(0).getAttack());
-		System.out.println("Type : "+cards.get(1).getType()+", "+"Name : "+cards.get(1).getName()+", "+"Score : "+cards.get(1).getScore()+", "+"Life : "+cards.get(1).getLife()+", "+"Attack : "+cards.get(1).getAttack());
-		System.out.println("Type : "+cards.get(2).getType()+", "+"Name : "+cards.get(2).getName()+", "+"Score : "+cards.get(2).getScore()+", "+"Life : "+cards.get(2).getLife()+", "+"Attack : "+cards.get(2).getAttack());
-		System.out.println("Type : "+cards.get(3).getType()+", "+"Name : "+cards.get(3).getName()+", "+"Score : "+cards.get(3).getScore()+", "+"Life : "+cards.get(3).getLife()+", "+"Attack : "+cards.get(3).getAttack());
-		System.out.println("Type : "+cards.get(4).getType()+", "+"Name : "+cards.get(4).getName()+", "+"Score : "+cards.get(4).getScore()+", "+"Life : "+cards.get(4).getLife()+", "+"Attack : "+cards.get(4).getAttack());
-		System.out.println("Type : "+cards.get(5).getType()+", "+"Name : "+cards.get(5).getName()+", "+"Score : "+cards.get(5).getScore()+", "+"Life : "+cards.get(5).getLife()+", "+"Attack : "+cards.get(5).getAttack());
-		System.out.println("Type : "+cards.get(6).getType()+", "+"Name : "+cards.get(6).getName()+", "+"Score : "+cards.get(6).getScore()+", "+"Life : "+cards.get(6).getLife()+", "+"Attack : "+cards.get(6).getAttack());
-		System.out.println("Type : "+cards.get(7).getType()+", "+"Name : "+cards.get(7).getName()+", "+"Score : "+cards.get(7).getScore()+", "+"Life : "+cards.get(7).getLife()+", "+"Attack : "+cards.get(7).getAttack());
-		System.out.println("Type : "+cards.get(8).getType()+", "+"Name : "+cards.get(8).getName()+", "+"Score : "+cards.get(8).getScore()+", "+"Life : "+cards.get(8).getLife()+", "+"Attack : "+cards.get(8).getAttack());
-		System.out.println("Type : "+cards.get(9).getType()+", "+"Name : "+cards.get(9).getName()+", "+"Score : "+cards.get(9).getScore()+", "+"Life : "+cards.get(9).getLife()+", "+"Attack : "+cards.get(9).getAttack());
-		System.out.println("Type : "+cards.get(10).getType()+", "+"Name : "+cards.get(10).getName()+", "+"Score : "+cards.get(10).getScore()+", "+"Life : "+cards.get(10).getLife()+", "+"Attack : "+cards.get(10).getAttack());
-		System.out.println("Type : "+cards.get(11).getType()+", "+"Name : "+cards.get(11).getName()+", "+"Score : "+cards.get(11).getScore()+", "+"Life : "+cards.get(11).getLife()+", "+"Attack : "+cards.get(11).getAttack());
+	public static void main(String[] args) throws InterruptedException {
+		Player player1 = new Player();
+		Player player2 = new Player();
+		ArrayList<Card> table = new ArrayList<Card>();
+		int round = 0;
+		System.out.println("==============================");
+		System.out.println("Game started");
+		System.out.println("==============================");
+		System.out.println();
+		System.out.println();
+		TimeUnit.SECONDS.sleep(2);
+		System.out.println("Player 1 joined the game!");
+		TimeUnit.SECONDS.sleep(1);
+		System.out.println("Player 2 joined the game!");
+		TimeUnit.SECONDS.sleep(2);
+		do {
+			System.out.println();
+			System.out.println();
+			System.out.println("==============================");
+			System.out.println("---- Round:"+ ++round+" started ---");
+			System.out.println("==============================");
+			TimeUnit.SECONDS.sleep(2);
+			System.out.println("Player 1 drop card");
+			table.add(player1.playCard());
+			System.out.println(table.get(0).toString());
+			TimeUnit.SECONDS.sleep(1);
+			System.out.println("Player 2 drop card");
+			table.add(player2.playCard());
+			System.out.println(table.get(1).toString());
+			TimeUnit.SECONDS.sleep(2);
+			System.out.println();
+			System.out.println("====== Checking For this Round Winner ======");
+			TimeUnit.SECONDS.sleep(1);
+			System.out.print(".");
+//			TimeUnit.SECONDS.sleep(1);
+			System.out.print(".");
+			TimeUnit.SECONDS.sleep(1);
+			System.out.print(".");
+//			TimeUnit.SECONDS.sleep(1);
+			System.out.print(".");
+			TimeUnit.SECONDS.sleep(1);
+			System.out.println(".");
+			TimeUnit.SECONDS.sleep(1);
+			if(new Game().roundWinner(table) == 1) {				
+				System.err.println("Player 1 is the winner");
+				player1.setEarnedCards(table.get(0));
+			}else if(new Game().roundWinner(table) == 2) {
+				System.err.println("Player 2 is the winner");
+				player2.setEarnedCards(table.get(1));
+			}else {
+				System.err.println("Equality! Round Skiped");				
+			}
+			table.clear();
+		} while (player1.getCards().size() > 0 && player2.getCards().size() > 0);	
+		TimeUnit.SECONDS.sleep(1);
+		System.out.println("==============================");
+		System.out.println("---- Game end! checking for game winner ---");
+		System.out.println("==============================");
+//		TimeUnit.SECONDS.sleep(1);
+		System.out.print(".");
+		TimeUnit.SECONDS.sleep(1);
+		System.out.print(".");
+//		TimeUnit.SECONDS.sleep(1);
+		System.out.print(".");
+		TimeUnit.SECONDS.sleep(1);
+		System.out.print(".");
+//		TimeUnit.SECONDS.sleep(1);
+		System.out.println(".");
+		TimeUnit.SECONDS.sleep(1);
+		System.out.println("----------------------");
+		System.out.println("----------------------");
+
+		System.out.println("\nPlayer one has "+player1.getEarnedCards().size()+" cards");
+		System.out.println("Player two has "+player2.getEarnedCards().size()+" cards");	
+		System.err.println("=======================");
+		if(player1.getEarnedCards().size() > player2.getEarnedCards().size()) {
+			System.err.println("\n==== The Winner is player 1 by: "+player1.getEarnedCards().size()+" crads");
+		}else if(player1.getEarnedCards().size() < player2.getEarnedCards().size()) {
+			System.err.println("\n==== The Winner is player 2 by: "+player2.getEarnedCards().size()+" cards");			
+		}else {
+			System.err.println("\n==== it's a tie!");
+		}
+		System.err.println("=======================");
+		System.err.println("=======================");
 	}
 }
